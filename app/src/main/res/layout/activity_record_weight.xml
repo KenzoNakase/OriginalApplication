@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.trajour.trajour.RecordWeightActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="計測日時"
+        android:id="@+id/textDate1"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/editDate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_below="@+id/textDate1"
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:inputType="date" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="身長"
+        android:id="@+id/textHeight4"
+        android:textSize="18sp"
+        android:layout_below="@+id/editDate1"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/editHeight1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textHeight4"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textHeight5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="180dp"
+        android:text="cm"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/editHeight1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="体重"
+        android:id="@+id/textWeight4"
+        android:textSize="18sp"
+        android:layout_below="@+id/editHeight1"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/editWeight1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_below="@+id/textWeight4"
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textWeight5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="290dp"
+        android:text="kg"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/editWeight1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="体脂肪率"
+        android:id="@+id/textBodyFatPercentage4"
+        android:textSize="18sp"
+        android:layout_below="@+id/editWeight1"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/editBodyFatPercentage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_below="@+id/textBodyFatPercentage4"
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textBodyFatPercentage5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="390dp"
+        android:text="%"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/editBodyFatPercentage1"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="保存"
+        android:id="@+id/saveButton"
+        android:layout_marginBottom="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

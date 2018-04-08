@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="ホーム" />
+        <item
+            android:id="@+id/nav_recordWeight"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="体重・体脂肪率を記録する" />
+        <item
+            android:id="@+id/nav_exerciseMenu"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="トレーニング メニュー" />
+        <item
+            android:id="@+id/nav_recordDailyExercise"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="トレーニング記録をつける" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="トレーニング履歴" />
+        <item
+            android:id="@+id/nav_exerciseType"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="トレーニング種目" />
+        <item
+            android:id="@+id/nav_rank"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="ランキング" />
+        <item
+            android:id="@+id/nav_calendar"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="カレンダー" />
+        <item
+            android:id="@+id/nav_graph"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="グラフ" />
+        <item
+            android:id="@+id/nav_photos"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="アルバム" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_invitation"
+                android:icon="@drawable/ic_menu_share"
+                android:title="招待する" />
+        </menu>
+    </item>
+
+</menu>
