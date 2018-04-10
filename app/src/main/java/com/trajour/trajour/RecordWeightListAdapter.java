@@ -7,29 +7,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RecordWeightListAdapter extends BaseAdapter {
-    private LayoutInflater mLayoutInflater;
-    private List<String> mRecordWeightList;
+    private LayoutInflater mLayoutInflater = null;
+    private ArrayList<RecordWeight> mRecordWeightArrayList;
 
     public RecordWeightListAdapter(Context context) {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setRecordWeightList(List<String> recordWeightList) {
-        mRecordWeightList = recordWeightList;
-    }
-
     @Override
     public int getCount() {
-        return mRecordWeightList.size();
+        return mRecordWeightArrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return mRecordWeightList.get(position);
+        return mRecordWeightArrayList.get(position);
     }
+
 
     @Override
     public long getItemId(int position) {

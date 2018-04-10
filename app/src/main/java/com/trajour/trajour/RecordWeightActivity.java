@@ -36,7 +36,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog mProgress;
     private EditText mEditDate1;
     private EditText mEditHeight1;
-    private EditText mEditWeight1;
+    private EditText mEditBodyWeight1;
     private EditText mEditBodyFatPercentage1;
     private Button mSaveButton;
 
@@ -53,9 +53,8 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
 
         mEditDate1 = (EditText) findViewById(R.id.editDate1);
         mEditHeight1 = (EditText) findViewById(R.id.editHeight1);
-        mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
+        mEditBodyWeight1 = (EditText) findViewById(R.id.editWeight1);
         mEditBodyFatPercentage1 = (EditText) findViewById(R.id.editBodyFatPercentage1);
-        mEditDate1 = (EditText) findViewById(R.id.editDate1);
 
         mSaveButton = (Button) findViewById(R.id.saveButton);
         mSaveButton.setOnClickListener(this);
@@ -73,38 +72,47 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
             im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
             DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference genreRef = dataBaseReference.child(Const.ContentsPATH).child(String.valueOf(mGenre));
+            DatabaseReference bodyWeightRef = dataBaseReference.child(Const.BodyWeightsPATH );
 
             Map<String, String> data = new HashMap<String, String>();
 
-            // UID
-            data.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+            //
+            String date = mEditDate1.getText().toString();
+            String height = mEditHeight1.getText().toString();
+            String bodyWeight = mEditBodyWeight1.getText().toString();
+            String bodyFatPercentage = mEditBodyFatPercentage1.getText().toString();
 
-            // タイトルと本文を取得する
-            String title = mTitleText.getText().toString();
-            String body = mBodyText.getText().toString();
-
-            if (title.length() == 0) {
+            if (date.length() == 0) {
                 // 質問が入力されていない時はエラーを表示するだけ
-                Snackbar.make(v, "タイトルを入力して下さい", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "日付を入力して下さい", Snackbar.LENGTH_LONG).show();
                 return;
             }
 
-            if (body.length() == 0) {
+            if (height.length() == 0) {
                 // 質問が入力されていない時はエラーを表示するだけ
-                Snackbar.make(v, "質問を入力して下さい", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "身長を入力して下さい", Snackbar.LENGTH_LONG).show();
                 return;
             }
 
-            // Preferenceから名前を取る
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-            String name = sp.getString(Const.NameKEY, "");
+            if (bodyWeight.length() == 0) {
+                // 質問が入力されていない時はエラーを表示するだけ
+                Snackbar.make(v, "体重を入力して下さい", Snackbar.LENGTH_LONG).show();
+                return;
+            }
 
-            data.put("title", title);
-            data.put("body", body);
-            data.put("name", name);
+            if (bodyFatPercentage.length() == 0) {
+                // 質問が入力されていない時はエラーを表示するだけ
+                Snackbar.make(v, "を入力して下さい", Snackbar.LENGTH_LONG).show();
+                return;
+            }
 
-            genreRef.push().setValue(data, this);
+
+            data.put("date", date);
+            data.put("height", height);
+            data.put("BodyWeight", bodyWeight);
+            data.put("bodyFatPercentage", bodyFatPercentage);
+
+            bodyWeightRef.push().setValue(data, this);
             mProgress.show();
         }
     }
@@ -116,7 +124,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
         if (databaseError == null) {
             finish();
         } else {
-            Snackbar.make(findViewById(android.R.id.content), "投稿に失敗しました", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
         }
     }
 }
