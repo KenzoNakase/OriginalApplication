@@ -36,16 +36,16 @@ public class RecordWeightListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(android.R.layout.list_record_weight, parent, false);
+            convertView = mLayoutInflater.inflate(R.layout.list_record_weight, parent, false);
         }
 
-        TextView textDate3 = (TextView) convertView.findViewById(android.R.id.textDate3);
+        TextView textDate3 = (TextView) convertView.findViewById(R.id.textDate3);
         textDate3.setText(mRecordWeightArrayList.get(position).getDate());
 
-        TextView textWeight6 = (TextView) convertView.findViewById(android.R.id.textWeight6);
+        TextView textWeight6 = (TextView) convertView.findViewById(R.id.textWeight6);
         textWeight6.setText(mRecordWeightArrayList.get(position).getDate());
 
-        TextView textBodyFatPercentage6 = (TextView) convertView.findViewById(android.R.id.textBodyFatPercentage6);
+        TextView textBodyFatPercentage6 = (TextView) convertView.findViewById(R.id.textBodyFatPercentage6);
         textBodyFatPercentage6.setText(mRecordWeightArrayList.get(position).getDate());
 
         return convertView;
