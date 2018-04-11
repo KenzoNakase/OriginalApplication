@@ -30,21 +30,28 @@ public class RecordWeightListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(android.R.layout.simple_list_item_2, null);
+            convertView = mLayoutInflater.inflate(android.R.layout.list_record_weight, parent, false);
         }
 
-        TextView textView1 = (TextView) convertView.findViewById(android.R.id.text1);
-        TextView textView2 = (TextView) convertView.findViewById(android.R.id.text2);
+        TextView textDate3 = (TextView) convertView.findViewById(android.R.id.textDate3);
+        textDate3.setText(mRecordWeightArrayList.get(position).getDate());
 
-        // 後でTaskクラスから情報を取得するように変更する
-        textView1.setText(mRecordWeightList.get(position));
+        TextView textWeight6 = (TextView) convertView.findViewById(android.R.id.textWeight6);
+        textWeight6.setText(mRecordWeightArrayList.get(position).getDate());
+
+        TextView textBodyFatPercentage6 = (TextView) convertView.findViewById(android.R.id.textBodyFatPercentage6);
+        textBodyFatPercentage6.setText(mRecordWeightArrayList.get(position).getDate());
 
         return convertView;
+    }
+
+    public void setmRecordWeightArrayList(ArrayList<RecordWeight> recordWeightArrayList) {
+        mRecordWeightArrayList = recordWeightArrayList;
     }
 }
