@@ -109,7 +109,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
 
             data.put("date", date);
             data.put("height", height);
-            data.put("BodyWeight", bodyWeight);
+            data.put("bodyWeight", bodyWeight);
             data.put("bodyFatPercentage", bodyFatPercentage);
 
             bodyWeightRef.push().setValue(data, this);
