@@ -17,6 +17,9 @@ import android.widget.ListView;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 
 public class MainActivity extends AppCompatActivity
@@ -33,6 +36,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // ログイン済みのユーザーを取得する
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        // ログインしていなければログイン画面に遷移させる
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
