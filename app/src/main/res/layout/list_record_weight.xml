@@ -7,8 +7,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_marginLeft="24dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginTop="4dp"
         android:text="Date"
         android:id="@+id/textDate3"
         android:layout_alignParentTop="true" />
@@ -16,31 +16,64 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="24dp"
-        android:text="Weight"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="26dp"
         android:id="@+id/textWeight6"
         android:layout_below="@+id/textDate3"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginLeft="24dp"
-        android:text="BodyFatPercentage"
-        android:id="@+id/textBodyFatPercentage6"
-        android:layout_below="@+id/textDate3"
-        android:layout_toRightOf="@+id/textWeight6"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="kg"
+        android:id="@+id/textWeight7"
+        android:layout_toRightOf="@+id/textWeight6"
+        android:layout_below="@+id/textDate3"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_marginLeft="24dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/textBodyFatPercentage6"
+        android:layout_below="@+id/textDate3"
+        android:layout_toRightOf="@+id/textWeight7"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="%"
+        android:id="@+id/textBodyFatPercentage7"
+        android:layout_below="@+id/textDate3"
+        android:layout_toRightOf="@+id/textBodyFatPercentage6"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="4dp"
         android:text="FFMI"
         android:id="@+id/textFFMI3"
         android:layout_below="@+id/textDate3"
-        android:layout_toRightOf="@+id/textBodyFatPercentage6"/>
+        android:layout_toRightOf="@+id/textBodyFatPercentage7"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="4dp"
+        android:text="22"
+        android:id="@+id/textFFMI4"
+        android:layout_below="@+id/textDate3"
+        android:layout_toRightOf="@+id/textFFMI3"/>
 
 
 </RelativeLayout>

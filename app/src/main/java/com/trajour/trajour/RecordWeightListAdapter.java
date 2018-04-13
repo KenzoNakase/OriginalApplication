@@ -43,10 +43,10 @@ public class RecordWeightListAdapter extends BaseAdapter {
         textDate3.setText(mRecordWeightArrayList.get(position).getDate());
 
         TextView textWeight6 = (TextView) convertView.findViewById(R.id.textWeight6);
-        textWeight6.setText(mRecordWeightArrayList.get(position).getDate());
+        textWeight6.setText(mRecordWeightArrayList.get(position).getBodyWeight());
 
         TextView textBodyFatPercentage6 = (TextView) convertView.findViewById(R.id.textBodyFatPercentage6);
-        textBodyFatPercentage6.setText(mRecordWeightArrayList.get(position).getDate());
+        textBodyFatPercentage6.setText(mRecordWeightArrayList.get(position).getBodyFatPercentage());
 
         return convertView;
     }
