@@ -51,7 +51,7 @@ public class RecordWeightListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void setmRecordWeightArrayList(ArrayList<RecordWeight> recordWeightArrayList) {
+    public void setRecordWeightArrayList(ArrayList<RecordWeight> recordWeightArrayList) {
         mRecordWeightArrayList = recordWeightArrayList;
     }
 }

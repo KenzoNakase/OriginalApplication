@@ -35,13 +35,14 @@ public class RecordWeightListActivity extends AppCompatActivity {
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             HashMap map = (HashMap) dataSnapshot.getValue();
 
+            String Uid = (String) map.get("uid");
             String bodyWeightUid = (String) map.get("bodyWeightUid");
             String date = (String) map.get("date");
             String height = (String) map.get("height");
             String bodyWeight = (String) map.get("bodyWeight");
             String bodyFatPercentage = (String) map.get("bodyFatPercentage");
 
-            RecordWeight recordWeight = new RecordWeight(bodyWeightUid, date, height, bodyWeight, bodyFatPercentage);
+            RecordWeight recordWeight = new RecordWeight(Uid, bodyWeightUid, date, height, bodyWeight, bodyFatPercentage);
             mRecordWeightArrayList.add(recordWeight);
             mAdapter.notifyDataSetChanged();
         }
@@ -78,9 +79,13 @@ public class RecordWeightListActivity extends AppCompatActivity {
         mRecordWeightArrayList = new ArrayList<RecordWeight>();
         mAdapter.notifyDataSetChanged();
 
+        mRecordWeightArrayList.clear();
+        mAdapter.setRecordWeightArrayList(mRecordWeightArrayList);
+        mListView.setAdapter(mAdapter);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-        mBodyWeightsRef = dataBaseReference.child(Const.BodyWeightsPATH).child(mRecordWeight.getBodyWeightUid());
+        mBodyWeightsRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.BodyWeightsPATH);
         mBodyWeightsRef.addChildEventListener(mEventListener);
 
     }

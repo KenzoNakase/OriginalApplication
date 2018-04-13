@@ -20,7 +20,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -71,49 +73,57 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
             InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-            DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference bodyWeightRef = dataBaseReference.child(Const.BodyWeightsPATH );
 
-            Map<String, String> data = new HashMap<String, String>();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-            //
-            String date = mEditDate1.getText().toString();
-            String height = mEditHeight1.getText().toString();
-            String bodyWeight = mEditBodyWeight1.getText().toString();
-            String bodyFatPercentage = mEditBodyFatPercentage1.getText().toString();
+            if (user != null) {
+                DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference bodyWeightRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.BodyWeightsPATH);
 
-            if (date.length() == 0) {
-                // 質問が入力されていない時はエラーを表示するだけ
-                Snackbar.make(v, "日付を入力して下さい", Snackbar.LENGTH_LONG).show();
-                return;
+                Map<String, String> data = new HashMap<String, String>();
+
+                //
+                String date = mEditDate1.getText().toString();
+                String height = mEditHeight1.getText().toString();
+                String bodyWeight = mEditBodyWeight1.getText().toString();
+                String bodyFatPercentage = mEditBodyFatPercentage1.getText().toString();
+
+                if (date.length() == 0) {
+                    // 質問が入力されていない時はエラーを表示するだけ
+                    Snackbar.make(v, "日付を入力して下さい", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (height.length() == 0) {
+                    // 質問が入力されていない時はエラーを表示するだけ
+                    Snackbar.make(v, "身長を入力して下さい", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (bodyWeight.length() == 0) {
+                    // 質問が入力されていない時はエラーを表示するだけ
+                    Snackbar.make(v, "体重を入力して下さい", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                if (bodyFatPercentage.length() == 0) {
+                    // 質問が入力されていない時はエラーを表示するだけ
+                    Snackbar.make(v, "を入力して下さい", Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+
+                data.put("date", date);
+                data.put("height", height);
+                data.put("bodyWeight", bodyWeight);
+                data.put("bodyFatPercentage", bodyFatPercentage);
+
+                bodyWeightRef.push().setValue(data, this);
+                mProgress.show();
+            } else {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
-
-            if (height.length() == 0) {
-                // 質問が入力されていない時はエラーを表示するだけ
-                Snackbar.make(v, "身長を入力して下さい", Snackbar.LENGTH_LONG).show();
-                return;
-            }
-
-            if (bodyWeight.length() == 0) {
-                // 質問が入力されていない時はエラーを表示するだけ
-                Snackbar.make(v, "体重を入力して下さい", Snackbar.LENGTH_LONG).show();
-                return;
-            }
-
-            if (bodyFatPercentage.length() == 0) {
-                // 質問が入力されていない時はエラーを表示するだけ
-                Snackbar.make(v, "を入力して下さい", Snackbar.LENGTH_LONG).show();
-                return;
-            }
-
-
-            data.put("date", date);
-            data.put("height", height);
-            data.put("bodyWeight", bodyWeight);
-            data.put("bodyFatPercentage", bodyFatPercentage);
-
-            bodyWeightRef.push().setValue(data, this);
-            mProgress.show();
         }
     }
 
