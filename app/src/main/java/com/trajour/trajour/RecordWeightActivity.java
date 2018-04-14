@@ -42,7 +42,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
     private Toolbar mToolbar;
     private int mYear, mMonth, mDay;
     private ProgressDialog mProgress;
-    private Button mDateButton;
+    private EditText mEditDate1;
     private EditText mEditHeight1;
     private EditText mEditBodyWeight1;
     private EditText mEditBodyFatPercentage1;
@@ -59,7 +59,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
                             mMonth = monthOfYear;
                             mDay = dayOfMonth;
                             String dateString = mYear + "/" + String.format("%02d",(mMonth + 1)) + "/" + String.format("%02d", mDay);
-                            mDateButton.setText(dateString);
+                            mEditDate1.setText(dateString);
                         }
                     }, 2018, 4, 1);
             datePickerDialog.show();
@@ -72,8 +72,8 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_record_weight);
 
-        mDateButton = (Button)findViewById(R.id.date_button);
-        mDateButton.setOnClickListener(mOnDateClickListener);
+        mEditDate1 = (EditText)findViewById(R.id.editDate1);
+        mEditDate1.setOnClickListener(mOnDateClickListener);
         mEditHeight1 = (EditText) findViewById(R.id.editHeight1);
         mEditBodyWeight1 = (EditText) findViewById(R.id.editWeight1);
         mEditBodyFatPercentage1 = (EditText) findViewById(R.id.editBodyFatPercentage1);
@@ -103,7 +103,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
                 Map<String, String> data = new HashMap<String, String>();
 
                 //
-                String date = mDateButton.getText().toString();
+                String date = mEditDate1.getText().toString();
                 String height = mEditHeight1.getText().toString();
                 String bodyWeight = mEditBodyWeight1.getText().toString();
                 String bodyFatPercentage = mEditBodyFatPercentage1.getText().toString();
