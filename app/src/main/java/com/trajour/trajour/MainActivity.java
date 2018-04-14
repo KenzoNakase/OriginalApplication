@@ -152,8 +152,8 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_recordDailyExercise) {
-
-
+            Intent intent = new Intent(getApplicationContext(), RecordExcerciseActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_history) {
 
 
