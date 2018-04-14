@@ -50,6 +50,11 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
     private EditText mEditRep1;
     private Button mSaveButton;
 
+    public static Calendar calendar = Calendar.getInstance();
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DATE);
+
     private View.OnClickListener mOnDateClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -63,7 +68,8 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
                             String dateString = mYear + "/" + String.format("%02d",(mMonth + 1)) + "/" + String.format("%02d", mDay);
                             mExerciseDate1.setText(dateString);
                         }
-                    }, 2018, 4, 1);
+                    },
+                    year, month, day);
             datePickerDialog.show();
         }
     };
@@ -154,11 +160,11 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
     @Override
     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
         mProgress.dismiss();
-
         if (databaseError == null) {
             finish();
         } else {
             Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
         }
     }
+
 }

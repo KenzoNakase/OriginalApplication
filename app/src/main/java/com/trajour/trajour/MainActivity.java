@@ -2,6 +2,7 @@ package com.trajour.trajour;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IntDef;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 

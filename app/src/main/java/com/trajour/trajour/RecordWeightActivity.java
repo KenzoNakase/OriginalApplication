@@ -37,6 +37,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+
 public class RecordWeightActivity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private Toolbar mToolbar;
@@ -47,6 +48,11 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
     private EditText mEditBodyWeight1;
     private EditText mEditBodyFatPercentage1;
     private Button mSaveButton;
+
+    public static Calendar calendar = Calendar.getInstance();
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DATE);
 
     private View.OnClickListener mOnDateClickListener = new View.OnClickListener() {
         @Override
@@ -61,7 +67,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
                             String dateString = mYear + "/" + String.format("%02d",(mMonth + 1)) + "/" + String.format("%02d", mDay);
                             mEditDate1.setText(dateString);
                         }
-                    }, 2018, 4, 1);
+                    }, year, month, day);
             datePickerDialog.show();
         }
     };
@@ -157,4 +163,5 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
             Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
         }
     }
+
 }
