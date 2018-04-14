@@ -20,17 +20,38 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.818"
-        android:layout_marginEnd="24dp"
-        android:layout_alignTop="@+id/textSex2"
+        android:layout_marginEnd="22dp"
+        android:layout_alignTop="@+id/accountName1"
         android:layout_alignEnd="@+id/listViewOneRepetitionMaximum" />
+
+    <TextView
+        android:id="@+id/accountName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="48dp"
+        android:text="アカウント名"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/accountName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="48dp"
+        android:text=""
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:id="@+id/textSex1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:text="性別"
+        android:layout_below="@+id/accountName1"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"/>
 
@@ -41,37 +62,29 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="48dp"
         android:text="男"
+        android:layout_below="@+id/accountName2"
         android:layout_toRightOf="@+id/textSex1"/>
 
     <TextView
-        android:id="@+id/textHeight1"
+        android:id="@+id/textAge1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
-        android:text="身長"
+        android:text="年齢"
         android:layout_below="@+id/textSex1"
         android:layout_alignParentStart="true"/>
 
     <TextView
-        android:id="@+id/textHeight2"
+        android:id="@+id/textAge2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="169"
+        android:text="31"
         android:layout_below="@+id/textSex2"
-        android:layout_toRightOf="@+id/textHeight1"/>
+        android:layout_toRightOf="@+id/textAge1"/>
 
-    <TextView
-        android:id="@+id/textHeight3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
-        android:text="cm"
-        android:layout_below="@+id/textSex2"
-        android:layout_toRightOf="@+id/textHeight2"/>
 
     <TextView
         android:id="@+id/textWeight1"
@@ -79,8 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
-        android:text="体重"
-        android:layout_below="@+id/textHeight1"
+        android:text="Level"
+        android:layout_below="@+id/textAge1"
         android:layout_alignParentStart="true"/>
 
     <TextView
@@ -89,79 +102,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="63"
-        android:layout_below="@+id/textHeight2"
+        android:text=" "
+        android:layout_below="@+id/textAge2"
         android:layout_toRightOf="@+id/textWeight1"/>
-
-    <TextView
-        android:id="@+id/textWeight3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
-        android:text="kg"
-        android:layout_below="@+id/textHeight3"
-        android:layout_toRightOf="@+id/textWeight2"/>
-
-    <TextView
-        android:id="@+id/textBodyFatPercentage1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:text="体脂肪率"
-        android:layout_below="@+id/textWeight1"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:id="@+id/textBodyFatPercentage2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="16dp"
-        android:text="11"
-        android:layout_below="@+id/textWeight2"
-        android:layout_toRightOf="@+id/textBodyFatPercentage1"/>
-
-    <TextView
-        android:id="@+id/textBodyFatPercentage3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="16dp"
-        android:text="%"
-        android:layout_below="@+id/textWeight3"
-        android:layout_toRightOf="@+id/textBodyFatPercentage2"/>
-
-    <TextView
-        android:id="@+id/textFFMI1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:text="FFMI"
-        android:layout_below="@+id/textBodyFatPercentage1"
-        android:layout_alignParentStart="true"/>
-
-    <TextView
-        android:id="@+id/textFFMI2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="46dp"
-        android:layout_marginTop="16dp"
-        android:text="24"
-        android:layout_below="@+id/textBodyFatPercentage2"
-        android:layout_toRightOf="@+id/textFFMI1"/>
-
-    <TextView
-        android:id="@+id/textName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Account Name"
-        android:layout_alignBaseline="@+id/textFFMI2"
-        android:layout_alignBottom="@+id/textFFMI2"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_marginStart="15dp" />
 
     <TextView
         android:id="@+id/textOneRepetitionMaximum"

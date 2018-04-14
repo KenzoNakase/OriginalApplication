@@ -2,6 +2,7 @@ package com.trajour.trajour;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.DatePicker;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,29 +33,47 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class RecordWeightActivity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private Toolbar mToolbar;
+    private int mYear, mMonth, mDay;
     private ProgressDialog mProgress;
-    private EditText mEditDate1;
+    private Button mDateButton;
     private EditText mEditHeight1;
     private EditText mEditBodyWeight1;
     private EditText mEditBodyFatPercentage1;
     private Button mSaveButton;
 
+    private View.OnClickListener mOnDateClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(RecordWeightActivity.this,
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                            mYear = year;
+                            mMonth = monthOfYear;
+                            mDay = dayOfMonth;
+                            String dateString = mYear + "/" + String.format("%02d",(mMonth + 1)) + "/" + String.format("%02d", mDay);
+                            mDateButton.setText(dateString);
+                        }
+                    }, 2018, 4, 1);
+            datePickerDialog.show();
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_weight);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.content_record_weight);
 
-        // UIの準備
-        setTitle("体重・体脂肪率を記録する");
-
-        mEditDate1 = (EditText) findViewById(R.id.editDate1);
+        mDateButton = (Button)findViewById(R.id.date_button);
+        mDateButton.setOnClickListener(mOnDateClickListener);
         mEditHeight1 = (EditText) findViewById(R.id.editHeight1);
         mEditBodyWeight1 = (EditText) findViewById(R.id.editWeight1);
         mEditBodyFatPercentage1 = (EditText) findViewById(R.id.editBodyFatPercentage1);
@@ -83,7 +103,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
                 Map<String, String> data = new HashMap<String, String>();
 
                 //
-                String date = mEditDate1.getText().toString();
+                String date = mDateButton.getText().toString();
                 String height = mEditHeight1.getText().toString();
                 String bodyWeight = mEditBodyWeight1.getText().toString();
                 String bodyFatPercentage = mEditBodyFatPercentage1.getText().toString();
