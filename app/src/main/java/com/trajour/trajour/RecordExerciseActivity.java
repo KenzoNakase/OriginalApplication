@@ -96,6 +96,7 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
+
     }
 
 
