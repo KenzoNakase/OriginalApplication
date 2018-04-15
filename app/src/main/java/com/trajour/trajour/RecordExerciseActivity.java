@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.DatePicker;
@@ -76,6 +77,32 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         }
     };
 
+    private AdapterView.OnItemSelectedListener mOnBodyPartItemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            mSpinnerBodyPart1 = (Spinner) parent;
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener mOnExerciseItemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            mSpinnerExercise1 = (Spinner) parent;
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +113,11 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         mExerciseDate1.setOnClickListener(mOnDateClickListener);
 
         mSpinnerBodyPart1 = (Spinner) findViewById(R.id.spinnerBodyPart1);
+        mSpinnerBodyPart1.setOnItemSelectedListener(mOnBodyPartItemSelectedListener);
+
         mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
+        mSpinnerExercise1.setOnItemSelectedListener(mOnExerciseItemSelectedListener);
+
         mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
         mEditRep1 = (EditText) findViewById(R.id.editRep1);
         mEditSet1 = (EditText) findViewById(R.id.editSet1);
@@ -117,8 +148,8 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
 
                 //
                 String exerciseDate = mExerciseDate1.getText().toString();
-                String bodyPart = mSpinnerBodyPart1.toString();
-                String exercise = mSpinnerExercise1.toString();
+                String bodyPart = mSpinnerBodyPart1.getSelectedItem().toString();
+                String exercise = mSpinnerExercise1.getSelectedItem().toString();
                 String weight = mEditWeight1.getText().toString();
                 String rep = mEditRep1.getText().toString();
                 String set = mEditSet1.getText().toString();

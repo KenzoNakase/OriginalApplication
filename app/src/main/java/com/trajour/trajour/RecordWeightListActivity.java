@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -83,6 +84,15 @@ public class RecordWeightListActivity extends AppCompatActivity {
         mRecordWeightArrayList.clear();
         mAdapter.setRecordWeightArrayList(mRecordWeightArrayList);
         mListView.setAdapter(mAdapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), RecordWeightActivity.class);
+                intent.putExtra("RecordWeight", mRecordWeightArrayList.get(position));
+                startActivity(intent);
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
