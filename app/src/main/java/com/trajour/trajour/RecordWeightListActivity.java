@@ -89,7 +89,7 @@ public class RecordWeightListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), RecordWeightActivity.class);
-                intent.putExtra("RecordWeight", mRecordWeightArrayList.get(position));
+                intent.putExtra("recordWeight", mRecordWeightArrayList.get(position));
                 startActivity(intent);
             }
         });

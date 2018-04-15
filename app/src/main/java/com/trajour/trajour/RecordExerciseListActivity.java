@@ -1,6 +1,7 @@
 package com.trajour.trajour;
 
 import android.content.Intent;
+import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -90,7 +91,7 @@ public class RecordExerciseListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), RecordExerciseActivity.class);
-                intent.putExtra("RecordExercise", mRecordExerciseArrayList.get(position));
+                intent.putExtra("recordExercise", mRecordExerciseArrayList.get(position));
                 startActivity(intent);
             }
         });

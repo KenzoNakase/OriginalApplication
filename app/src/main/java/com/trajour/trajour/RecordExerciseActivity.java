@@ -24,6 +24,9 @@ import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
+import android.util.Log;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,6 +55,9 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
     private EditText mEditRep1;
     private EditText mEditSet1;
     private Button mSaveButton;
+    private Button mDeleteButton;
+
+    private RecordExercise mRecordExercise;
 
     public static Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
@@ -125,6 +131,9 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         mSaveButton = (Button) findViewById(R.id.saveButton);
         mSaveButton.setOnClickListener(this);
 
+        mDeleteButton = (Button) findViewById(R.id.deleteButton);
+        mDeleteButton.setOnClickListener(this);
+
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
 
@@ -193,6 +202,10 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
             }
 
         }
+
+        if (v.getId() == R.id.deleteButton) {
+            showAlertDialog();
+        }
     }
 
 
@@ -204,6 +217,44 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         } else {
             Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    private void showAlertDialog() {
+        // AlertDialog.Builderクラスを使ってAlertDialogの準備をする
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("タイトル");
+        alertDialogBuilder.setMessage("メッセージ");
+
+        // 肯定ボタンに表示される文字列、押したときのリスナーを設定する
+        alertDialogBuilder.setPositiveButton("肯定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("UI_PARTS", "肯定ボタン");
+                    }
+                });
+
+        // 中立ボタンに表示される文字列、押したときのリスナーを設定する
+        alertDialogBuilder.setNeutralButton("中立",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("UI_PARTS", "中立ボタン");
+                    }
+                });
+
+        // 否定ボタンに表示される文字列、押したときのリスナーを設定する
+        alertDialogBuilder.setNegativeButton("否定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("UI_PARTS", "否定ボタン");
+                    }
+                });
+
+        // AlertDialogを作成して表示する
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 }
