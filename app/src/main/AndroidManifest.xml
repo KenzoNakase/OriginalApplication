@@ -37,7 +37,10 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".RecordExerciseActivity"
-            android:label="トレーニング記録をつける"
+        android:label="トレーニング記録をつける"
+        android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".RecordExerciseListActivity"
+            android:label="トレーニング記録一覧"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 
