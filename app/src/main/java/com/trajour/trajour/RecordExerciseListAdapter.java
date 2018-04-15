@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RecordExerciseListAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater = null;
-    private ArrayList<RecordWeight> mRecordExerciseArrayList;
+    private ArrayList<RecordExercise> mRecordExerciseArrayList;
 
     public RecordExerciseListAdapter(Context context) {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -36,11 +36,11 @@ public class RecordExerciseListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.list_record_excercise, parent, false);
+            convertView = mLayoutInflater.inflate(R.layout.list_record_exercise, parent, false);
         }
 
-        TextView textExcercise1 = (TextView) convertView.findViewById(R.id.textExercise1);
-        textExcercise1.setText(mRecordExerciseArrayList.get(position).getExercise());
+        TextView textExercise1 = (TextView) convertView.findViewById(R.id.textExercise1);
+        textExercise1.setText(mRecordExerciseArrayList.get(position).getExercise());
 
         TextView textExerciseDate1 = (TextView) convertView.findViewById(R.id.textExerciseDate1);
         textExerciseDate1.setText(mRecordExerciseArrayList.get(position).getExerciseDate());
@@ -57,7 +57,7 @@ public class RecordExerciseListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void setRecordExcerciseArrayList(ArrayList<RecordWeight> recordExcerciseArrayList) {
-        mRecordExerciseArrayList = recordExcerciseArrayList;
+    public void setRecordExerciseArrayList(ArrayList<RecordExercise> recordExerciseArrayList) {
+        mRecordExerciseArrayList = recordExerciseArrayList;
     }
 }

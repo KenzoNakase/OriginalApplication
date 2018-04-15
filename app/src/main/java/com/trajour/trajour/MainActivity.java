@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar mToolbar;
-    private int mGenre = 0;
     private OneRepetitionMaximumAdapter mOneRepetitionMaximumAdapter;
     private ListView mListView;
 
@@ -154,10 +153,10 @@ public class MainActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_recordDailyExercise) {
-            Intent intent = new Intent(getApplicationContext(), RecordExcerciseActivity.class);
+            Intent intent = new Intent(getApplicationContext(), RecordExerciseActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_history) {
-            Intent intent = new Intent(getApplicationContext(), RecordExcerciseListActivity.class);
+            Intent intent = new Intent(getApplicationContext(), RecordExerciseListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_exerciseType) {
 

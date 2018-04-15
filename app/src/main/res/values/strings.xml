@@ -23,7 +23,6 @@
     </string>
 
     <string-array name="bodyPartList">
-        <item></item>
         <item>胸</item>
         <item>腕</item>
         <item>背中</item>
@@ -39,8 +38,7 @@
         <item>股関節</item>
     </string-array>
 
-    <string-array name="excerciseList">
-        <item></item>
+    <string-array name="exerciseList">
         <item>ベンチプレス</item>
         <item>デッドリフト</item>
         <item>スクワット</item>

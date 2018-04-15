@@ -37,15 +37,15 @@ public class RecordExerciseListActivity extends AppCompatActivity {
             HashMap map = (HashMap) dataSnapshot.getValue();
 
             String Uid = (String) map.get("uid");
-            String excerciseDate = (String) map.get("exerciseDate");
+            String exerciseDate = (String) map.get("exerciseDate");
             String bodyPart = (String) map.get("bodyPart");
-            String excercise= (String) map.get("exercise");
+            String exercise= (String) map.get("exercise");
             String weight = (String) map.get("weight");
             String rep = (String) map.get("rep");
             String set = (String) map.get("set");
 
-            RecordExercise recordExcercise = new RecordExercise(Uid, excerciseDate, bodyPart, excercise, weight, rep, set);
-            mRecordExerciseArrayList.add(recordExcercise);
+            RecordExercise recordExercise = new RecordExercise(Uid, exerciseDate, bodyPart, exercise, weight, rep, set);
+            mRecordExerciseArrayList.add(recordExercise);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -73,7 +73,7 @@ public class RecordExerciseListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_record_excercise_list);
+        setContentView(R.layout.content_record_exercise_list);
 
         // ListViewの準備
         mListView = (ListView) findViewById(R.id.listView1);
@@ -82,7 +82,7 @@ public class RecordExerciseListActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
 
         mRecordExerciseArrayList.clear();
-        mAdapter.setRecordExcerciseArrayList(mRecordExerciseArrayList);
+        mAdapter.setRecordExerciseArrayList(mRecordExerciseArrayList);
         mListView.setAdapter(mAdapter);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
