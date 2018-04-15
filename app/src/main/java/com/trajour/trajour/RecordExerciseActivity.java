@@ -79,6 +79,7 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_record_exercise);
 
         mExerciseDate1 = (EditText)findViewById(R.id.editExerciseDate1);
@@ -97,13 +98,13 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         mProgress.setMessage("投稿中...");
     }
 
+
     @Override
     public void onClick(View v) {
         if (v == mSaveButton) {
             // キーボードが出てたら閉じる
             InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
 
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -114,14 +115,14 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
                 Map<String, String> data = new HashMap<String, String>();
 
                 //
-                String excerciseDate = mExerciseDate1.getText().toString();
+                String exerciseDate = mExerciseDate1.getText().toString();
                 String bodyPart = mSpinnerBodyPart1.toString();
-                String excercise = mSpinnerExercise1.toString();
+                String exercise = mSpinnerExercise1.toString();
                 String weight = mEditWeight1.getText().toString();
                 String rep = mEditRep1.getText().toString();
                 String set = mEditSet1.getText().toString();
 
-                if (excerciseDate.length() == 0) {
+                if (exerciseDate.length() == 0) {
                     // 質問が入力されていない時はエラーを表示するだけ
                     Snackbar.make(v, "日付を入力して下さい", Snackbar.LENGTH_LONG).show();
                     return;
@@ -133,7 +134,7 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
                     return;
                 }
 
-                if (excercise.length() == 0) {
+                if (exercise.length() == 0) {
                     // 質問が入力されていない時はエラーを表示するだけ
                     Snackbar.make(v, "トレーニング種目を入力して下さい", Snackbar.LENGTH_LONG).show();
                     return;
@@ -145,9 +146,9 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
                     return;
                 }
 
-                data.put("exerciseDate", excerciseDate);
+                data.put("exerciseDate", exerciseDate);
                 data.put("bodyPart", bodyPart);
-                data.put("exercise", excercise);
+                data.put("exercise", exercise);
                 data.put("weight", weight);
                 data.put("rep", rep);
                 data.put("set", set);
@@ -158,8 +159,10 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
+
         }
     }
+
 
     @Override
     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
