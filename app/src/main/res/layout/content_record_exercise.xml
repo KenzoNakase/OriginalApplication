@@ -105,8 +105,8 @@
         android:id="@+id/textWeight2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="250dp"
         android:text="kg"
         android:textSize="18sp"
         android:layout_toRightOf="@+id/editWeight1" />
@@ -138,8 +138,8 @@
         android:id="@+id/textRep2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="310dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="330dp"
         android:text="回"
         android:textSize="18sp"
         android:layout_toRightOf="@+id/editRep1" />

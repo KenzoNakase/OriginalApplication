@@ -17,18 +17,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_marginTop="8dp"
-        android:text="ExerciseDate"
-        android:id="@+id/textExerciseDate1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/textWeight8"
         android:layout_below="@+id/textExercise1"/>
 
@@ -47,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginLeft="24dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="4dp"
         android:id="@+id/textRep2"
         android:layout_below="@+id/textExercise1"
@@ -57,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginRight="36dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="4dp"
         android:text="回"
         android:id="@+id/textRep3"
@@ -84,6 +74,16 @@
         android:id="@+id/textSet4"
         android:layout_below="@+id/textExercise1"
         android:layout_toRightOf="@+id/textSet3"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="ExerciseDate"
+        android:id="@+id/textExerciseDate1"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@+id/textSet4"
+        android:layout_below="@+id/textExercise1"/>
 
 
 </RelativeLayout>
