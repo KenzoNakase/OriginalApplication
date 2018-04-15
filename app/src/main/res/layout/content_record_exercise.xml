@@ -10,15 +10,15 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context="com.trajour.trajour.RecordExcerciseActivity"
-    tools:showIn="@layout/activity_record_excercise">
+    tools:context="com.trajour.trajour.RecordExerciseActivity"
+    tools:showIn="@layout/activity_record_exercise">
 
 
-<TextView
+    <TextView
         android:id="@+id/textExerciseDate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="32dp"
         android:text="日付"
         android:textSize="18sp"
@@ -27,7 +27,7 @@
 
     <EditText
         android:id="@+id/editExerciseDate1"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,60 +39,62 @@
         android:id="@+id/textBodyPart1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="32dp"
         android:text="部位"
         android:textSize="18sp"
         android:layout_below="@+id/editExerciseDate1"
         android:layout_alignParentStart="true"/>
 
-    <EditText
-        android:id="@+id/editBodyPart1"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinnerBodyPart1"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="32dp"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/textBodyPart1"
-        android:ems="10" />
+        android:layout_centerHorizontal="true"
+        android:entries="@array/bodyPartList"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:id="@+id/textExercise1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="32dp"
         android:text="トレーニング種目"
         android:textSize="18sp"
-        android:layout_below="@+id/editBodyPart1"
+        android:layout_below="@+id/spinnerBodyPart1"
         android:layout_alignParentStart="true"/>
 
-    <EditText
-        android:id="@+id/editExcercise1"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinnerExercise1"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginLeft="32dp"
         android:layout_below="@+id/textExercise1"
-        android:layout_alignParentStart="true"
-        android:ems="10" />
+        android:layout_centerHorizontal="true"
+        android:entries="@array/exerciseList"
+        android:spinnerMode="dialog" />
 
     <TextView
         android:id="@+id/textWeight1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="32dp"
         android:text="重量"
         android:textSize="18sp"
-        android:layout_below="@+id/editExcercise1"
+        android:layout_below="@+id/spinnerExercise1"
         android:layout_alignParentStart="true"/>
 
     <EditText
         android:id="@+id/editWeight1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="32dp"
         android:layout_below="@+id/textWeight1"
         android:layout_alignParentStart="true"
@@ -100,10 +102,21 @@
         android:inputType="numberDecimal" />
 
     <TextView
+        android:id="@+id/textWeight2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="250dp"
+        android:text="kg"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/editWeight1" />
+
+
+    <TextView
         android:id="@+id/textRep1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="32dp"
         android:text="回数"
         android:textSize="18sp"
@@ -114,9 +127,41 @@
         android:id="@+id/editRep1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="32dp"
         android:layout_below="@+id/textRep1"
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/textRep2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="325dp"
+        android:text="回"
+        android:textSize="18sp"
+        android:layout_toRightOf="@+id/editRep1" />
+
+    <TextView
+        android:id="@+id/textSet1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="32dp"
+        android:text="セット"
+        android:textSize="18sp"
+        android:layout_below="@+id/editRep1"
+        android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:id="@+id/editSet1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="32dp"
+        android:layout_below="@+id/textSet1"
         android:layout_alignParentStart="true"
         android:ems="10"
         android:inputType="numberDecimal" />
@@ -128,5 +173,7 @@
         android:id="@+id/saveButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+
 
 </RelativeLayout>

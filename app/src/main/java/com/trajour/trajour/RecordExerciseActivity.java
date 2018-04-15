@@ -21,6 +21,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,16 +39,17 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-public class RecordExcerciseActivity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
+public class RecordExerciseActivity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private Toolbar mToolbar;
     private int mYear, mMonth, mDay;
     private ProgressDialog mProgress;
     private EditText mExerciseDate1;
-    private EditText mEditBodyPart1;
-    private EditText mEditExcercise1;
+    private Spinner mSpinnerBodyPart1;
+    private Spinner  mSpinnerExercise1;
     private EditText mEditWeight1;
     private EditText mEditRep1;
+    private EditText mEditSet1;
     private Button mSaveButton;
 
     public static Calendar calendar = Calendar.getInstance();
@@ -58,7 +60,7 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
     private View.OnClickListener mOnDateClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(RecordExcerciseActivity.this,
+            DatePickerDialog datePickerDialog = new DatePickerDialog(RecordExerciseActivity.this,
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -77,15 +79,16 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_excercise);
+        setContentView(R.layout.activity_record_exercise);
 
         mExerciseDate1 = (EditText)findViewById(R.id.editExerciseDate1);
         mExerciseDate1.setOnClickListener(mOnDateClickListener);
 
-        mEditBodyPart1 = (EditText) findViewById(R.id.editBodyPart1);
-        mEditExcercise1 = (EditText) findViewById(R.id.editExcercise1);
+        mSpinnerBodyPart1 = (Spinner) findViewById(R.id.spinnerBodyPart1);
+        mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
         mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
         mEditRep1 = (EditText) findViewById(R.id.editRep1);
+        mEditSet1 = (EditText) findViewById(R.id.editSet1);
 
         mSaveButton = (Button) findViewById(R.id.saveButton);
         mSaveButton.setOnClickListener(this);
@@ -106,16 +109,17 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference dailyExcerciseRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.DailyExcercisesPATH);
+                DatabaseReference dailyExerciseRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.DailyExercisesPATH);
 
                 Map<String, String> data = new HashMap<String, String>();
 
                 //
                 String excerciseDate = mExerciseDate1.getText().toString();
-                String bodyPart = mEditBodyPart1.getText().toString();
-                String excercise = mEditExcercise1.getText().toString();
+                String bodyPart = mSpinnerBodyPart1.toString();
+                String excercise = mSpinnerExercise1.toString();
                 String weight = mEditWeight1.getText().toString();
                 String rep = mEditRep1.getText().toString();
+                String set = mEditSet1.getText().toString();
 
                 if (excerciseDate.length() == 0) {
                     // 質問が入力されていない時はエラーを表示するだけ
@@ -141,14 +145,14 @@ public class RecordExcerciseActivity extends AppCompatActivity implements View.O
                     return;
                 }
 
-
-                data.put("excerciseDate", excerciseDate);
+                data.put("exerciseDate", excerciseDate);
                 data.put("bodyPart", bodyPart);
-                data.put("excercise", excercise);
+                data.put("exercise", excercise);
                 data.put("weight", weight);
                 data.put("rep", rep);
+                data.put("set", set);
 
-                dailyExcerciseRef.push().setValue(data, this);
+                dailyExerciseRef.push().setValue(data, this);
                 mProgress.show();
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

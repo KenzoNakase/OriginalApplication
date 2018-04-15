@@ -21,4 +21,29 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    <string-array name="bodyPartList">
+        <item></item>
+        <item>胸</item>
+        <item>腕</item>
+        <item>背中</item>
+        <item>肩</item>
+        <item>上腕三頭筋</item>
+        <item>上腕ニ頭筋</item>
+        <item>前腕</item>
+        <item>腹筋</item>
+        <item>下半身</item>
+        <item>大体四頭筋</item>
+        <item>ハムストリングス</item>
+        <item>ふくらはぎ</item>
+        <item>股関節</item>
+    </string-array>
+
+    <string-array name="excerciseList">
+        <item></item>
+        <item>ベンチプレス</item>
+        <item>デッドリフト</item>
+        <item>スクワット</item>
+    </string-array>
+
 </resources>

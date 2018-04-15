@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="8dp"
+        android:text="Exercise"
+        android:id="@+id/textExercise1"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="8dp"
+        android:text="ExerciseDate"
+        android:id="@+id/textExerciseDate1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/textWeight8"
+        android:layout_below="@+id/textExercise1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="kg"
+        android:id="@+id/textWeight9"
+        android:layout_toRightOf="@+id/textWeight8"
+        android:layout_below="@+id/textExercise1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/textRep2"
+        android:layout_below="@+id/textExercise1"
+        android:layout_toRightOf="@+id/textWeight9"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="4dp"
+        android:text="回"
+        android:id="@+id/textRep3"
+        android:layout_below="@+id/textExercise1"
+        android:layout_toRightOf="@+id/textRep2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="4dp"
+        android:id="@+id/textSet3"
+        android:layout_below="@+id/textExercise1"
+        android:layout_toRightOf="@+id/textRep3"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="4dp"
+        android:text="セット"
+        android:id="@+id/textSet4"
+        android:layout_below="@+id/textExercise1"
+        android:layout_toRightOf="@+id/textSet3"/>
+
+
+</RelativeLayout>
