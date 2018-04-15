@@ -27,7 +27,7 @@
 
     <EditText
         android:id="@+id/editExerciseDate1"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         android:id="@+id/textBodyPart1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="32dp"
         android:text="部位"
         android:textSize="18sp"
@@ -61,7 +61,7 @@
         android:id="@+id/textExercise1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="32dp"
         android:text="トレーニング種目"
         android:textSize="18sp"
@@ -83,7 +83,7 @@
         android:id="@+id/textWeight1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="32dp"
         android:text="重量"
         android:textSize="18sp"
@@ -106,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="260dp"
         android:text="kg"
         android:textSize="18sp"
         android:layout_toRightOf="@+id/editWeight1" />
@@ -116,7 +116,7 @@
         android:id="@+id/textRep1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="32dp"
         android:text="回数"
         android:textSize="18sp"
@@ -139,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="350dp"
         android:text="回"
         android:textSize="18sp"
         android:layout_toRightOf="@+id/editRep1" />
@@ -148,7 +148,7 @@
         android:id="@+id/textSet1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="32dp"
         android:text="セット"
         android:textSize="18sp"
@@ -167,12 +167,22 @@
         android:inputType="numberDecimal" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="保存"
         android:id="@+id/saveButton"
+        android:layout_marginLeft="32dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="削除"
+        android:id="@+id/deleteButton"
+        android:layout_marginRight="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
 
 
 
