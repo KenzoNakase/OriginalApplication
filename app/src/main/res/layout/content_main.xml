@@ -23,7 +23,7 @@
         android:layout_marginEnd="27dp"
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/listViewOneRepetitionMaximum"
-        android:layout_marginTop="33dp" />
+        android:layout_marginTop="53dp" />
 
     <TextView
         android:id="@+id/accountName1"
@@ -94,6 +94,7 @@
         android:text="最大挙上重量（1RM）"
         android:textSize="18sp"
         android:layout_above="@+id/listViewOneRepetitionMaximum"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true" />
 
     <ListView
