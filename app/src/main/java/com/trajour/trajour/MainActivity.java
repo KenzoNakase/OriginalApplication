@@ -150,6 +150,9 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), RecordWeightListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_exerciseMenu) {
+            Intent intent = new Intent(getApplicationContext(), ExerciseMenuActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_exerciseMenuList) {
 
 
         } else if (id == R.id.nav_recordDailyExercise) {

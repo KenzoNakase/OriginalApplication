@@ -27,21 +27,27 @@
         <activity
             android:name=".RecordWeightActivity"
             android:label="体重・体脂肪率を記録する"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RecordWeightListActivity"
             android:label="体重・体脂肪率一覧"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".RecordExerciseActivity"
-        android:label="トレーニング記録をつける"
-        android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".RecordExerciseListActivity"
+        <activity
+            android:name=".RecordExerciseActivity"
+            android:label="トレーニング記録をつける"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RecordExerciseListActivity"
             android:label="トレーニング記録一覧"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ExerciseMenuActivity"
+            android:label="トレーニングメニュー"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
