@@ -24,7 +24,6 @@ import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 
-import android.util.Log;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
@@ -222,33 +221,24 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
     private void showAlertDialog() {
         // AlertDialog.Builderクラスを使ってAlertDialogの準備をする
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("タイトル");
-        alertDialogBuilder.setMessage("メッセージ");
+        alertDialogBuilder.setTitle("実行確認");
+        alertDialogBuilder.setMessage("削除します。よろしいですか？");
 
         // 肯定ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setPositiveButton("肯定",
+        alertDialogBuilder.setPositiveButton("はい",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("UI_PARTS", "肯定ボタン");
-                    }
-                });
 
-        // 中立ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setNeutralButton("中立",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("UI_PARTS", "中立ボタン");
                     }
                 });
 
         // 否定ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setNegativeButton("否定",
+        alertDialogBuilder.setNegativeButton("キャンセル",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("UI_PARTS", "否定ボタン");
+
                     }
                 });
 

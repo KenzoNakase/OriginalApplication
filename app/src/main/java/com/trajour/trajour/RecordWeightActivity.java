@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -48,6 +50,7 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
     private EditText mEditBodyWeight1;
     private EditText mEditBodyFatPercentage1;
     private Button mSaveButton;
+    private Button mDeleteButton;
 
     public static Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
@@ -86,6 +89,9 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
 
         mSaveButton = (Button) findViewById(R.id.saveButton);
         mSaveButton.setOnClickListener(this);
+
+        mDeleteButton = (Button) findViewById(R.id.deleteButton);
+        mDeleteButton.setOnClickListener(this);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
@@ -151,6 +157,10 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
                 startActivity(intent);
             }
         }
+
+        if (v.getId() == R.id.deleteButton) {
+            showAlertDialog();
+        }
     }
 
     @Override
@@ -162,6 +172,35 @@ public class RecordWeightActivity extends AppCompatActivity implements View.OnCl
         } else {
             Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
         }
+    }
+
+    private void showAlertDialog() {
+        // AlertDialog.Builderクラスを使ってAlertDialogの準備をする
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("実行確認");
+        alertDialogBuilder.setMessage("削除します。よろしいですか？");
+
+        // 肯定ボタンに表示される文字列、押したときのリスナーを設定する
+        alertDialogBuilder.setPositiveButton("はい",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        // 否定ボタンに表示される文字列、押したときのリスナーを設定する
+        alertDialogBuilder.setNegativeButton("キャンセル",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+        // AlertDialogを作成して表示する
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 }
