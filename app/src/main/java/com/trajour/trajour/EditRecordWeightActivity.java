@@ -125,7 +125,7 @@ public class EditRecordWeightActivity extends AppCompatActivity implements View.
                 DatabaseReference bodyWeightRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.BodyWeightsPATH).child(String.valueOf(mRecordWeight.getBodyWeightUid()));
 
 
-                Map<String, String> data = new HashMap<String, String>();
+                Map<String, Object> data = new HashMap<String, Object>();
 
                 String date = mEditDate1.getText().toString();
                 String height = mEditHeight1.getText().toString();
@@ -162,7 +162,9 @@ public class EditRecordWeightActivity extends AppCompatActivity implements View.
                 data.put("bodyWeight", bodyWeight);
                 data.put("bodyFatPercentage", bodyFatPercentage);
 
-                bodyWeightRef.push().setValue(data, this);
+                bodyWeightRef.updateChildren(data);
+                Intent intent = new Intent(getApplicationContext(), RecordWeightListActivity.class);
+                startActivity(intent);
                 mProgress.show();
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -182,7 +184,7 @@ public class EditRecordWeightActivity extends AppCompatActivity implements View.
         if (databaseError == null) {
             finish();
         } else {
-            Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(findViewById(android.R.id.content), "更新に失敗しました", Snackbar.LENGTH_LONG).show();
         }
     }
 
