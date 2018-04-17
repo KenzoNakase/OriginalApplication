@@ -88,7 +88,7 @@ public class RecordWeightListActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), RecordWeightActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditRecordWeightActivity.class);
                 intent.putExtra("recordWeight", mRecordWeightArrayList.get(position));
                 startActivity(intent);
             }

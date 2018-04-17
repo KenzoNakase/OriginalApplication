@@ -33,6 +33,10 @@
             android:label="体重・体脂肪率一覧"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".EditRecordWeightActivity"
+            android:label="体重・体脂肪率を記録する"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".SettingActivity" />
