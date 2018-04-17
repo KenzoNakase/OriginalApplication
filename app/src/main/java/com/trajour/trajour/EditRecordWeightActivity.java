@@ -86,7 +86,7 @@ public class EditRecordWeightActivity extends AppCompatActivity implements View.
 
         Bundle extras = getIntent().getExtras();
         mRecordWeight = (RecordWeight) extras.get("recordWeight");
-        
+
         mEditDate1 = (EditText)findViewById(R.id.editDate1);
         mEditDate1.setText(mRecordWeight.getDate());
         mEditDate1.setOnClickListener(mOnDateClickListener);
@@ -201,9 +201,10 @@ public class EditRecordWeightActivity extends AppCompatActivity implements View.
 
                         if (user != null) {
                             DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                            DatabaseReference bodyWeightRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.BodyWeightsPATH).child(String.valueOf(mRecordWeight.getDate()));
+                            DatabaseReference bodyWeightRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.BodyWeightsPATH).child(String.valueOf(mRecordWeight.getBodyWeightUid()));
                             bodyWeightRef.removeValue();
-
+                            Intent intent = new Intent(getApplicationContext(), RecordWeightListActivity.class);
+                            startActivity(intent);
                         }
                     }
                 });

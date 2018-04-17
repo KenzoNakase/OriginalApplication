@@ -35,8 +35,8 @@ public class RecordWeight implements Serializable {
         return mBodyFatPercentage;
     }
 
-    public RecordWeight(String Uid, String bodyWeightUid, String date, String height, String bodyWeight, String bodyFatPercentage) {
-        mUid = Uid;
+    public RecordWeight(String uid, String bodyWeightUid, String date, String height, String bodyWeight, String bodyFatPercentage) {
+        mUid = uid;
         mBodyWeightUid = bodyWeightUid;
         mDate = date;
         mHeight = height;
