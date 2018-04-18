@@ -49,6 +49,11 @@
             android:label="トレーニング記録一覧"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".EditRecordExerciseActivity"
+            android:label="トレーニング記録をつける"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
             android:name=".ExerciseMenuActivity"
             android:label="トレーニングメニュー"
             android:parentActivityName=".MainActivity" />

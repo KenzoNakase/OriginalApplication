@@ -38,7 +38,8 @@ public class RecordExerciseListActivity extends AppCompatActivity {
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             HashMap map = (HashMap) dataSnapshot.getValue();
 
-            String Uid = (String) map.get("uid");
+            String uid = (String) map.get("uid");
+            String exerciseUid = (String) map.get("exerciseUid");
             String exerciseDate = (String) map.get("exerciseDate");
             String bodyPart = (String) map.get("bodyPart");
             String exercise= (String) map.get("exercise");
@@ -46,7 +47,7 @@ public class RecordExerciseListActivity extends AppCompatActivity {
             String rep = (String) map.get("rep");
             String set = (String) map.get("set");
 
-            RecordExercise recordExercise = new RecordExercise(Uid, exerciseDate, bodyPart, exercise, weight, rep, set);
+            RecordExercise recordExercise = new RecordExercise(uid, dataSnapshot.getKey(), exerciseDate, bodyPart, exercise, weight, rep, set);
             mRecordExerciseArrayList.add(recordExercise);
             mAdapter.notifyDataSetChanged();
         }
@@ -90,7 +91,7 @@ public class RecordExerciseListActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), RecordExerciseActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditRecordExerciseActivity.class);
                 intent.putExtra("recordExercise", mRecordExerciseArrayList.get(position));
                 startActivity(intent);
             }

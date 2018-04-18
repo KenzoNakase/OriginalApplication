@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class RecordExercise implements Serializable {
     private String mUid;
+    private String mExerciseUid;
     private String mExerciseDate;
     private String mBodyPart;
     private String mExercise;
@@ -14,6 +15,10 @@ public class RecordExercise implements Serializable {
 
     public String getUid() {
         return mUid;
+    }
+
+    public String getExerciseUid() {
+        return mExerciseUid;
     }
 
     public String getExerciseDate() {
@@ -40,8 +45,9 @@ public class RecordExercise implements Serializable {
         return mSet;
     }
 
-    public RecordExercise(String Uid, String exerciseDate, String bodyPart, String exercise, String weight, String rep, String set) {
-        mUid = Uid;
+    public RecordExercise(String uid, String exerciseUid, String exerciseDate, String bodyPart, String exercise, String weight, String rep, String set) {
+        mUid = uid;
+        mExerciseUid = exerciseUid;
         mExerciseDate = exerciseDate;
         mBodyPart = bodyPart;
         mExercise = exercise;
