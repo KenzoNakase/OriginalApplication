@@ -122,11 +122,11 @@ public class EditRecordExerciseActivity extends AppCompatActivity implements Vie
         mExerciseDate1.setOnClickListener(mOnDateClickListener);
 
         mSpinnerBodyPart1 = (Spinner) findViewById(R.id.spinnerBodyPart1);
-        //mSpinnerBodyPart1.setText(mRecordExercise.getBodyPart());
+        //mSpinnerBodyPart1.setSelection(mRecordExercise.getBodyPart());
         mSpinnerBodyPart1.setOnItemSelectedListener(mOnBodyPartItemSelectedListener);
 
         mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
-        //mSpinnerBodyPart1.setText(mRecordExercise.getExercise());
+        //mSpinnerBodyPart1.setSelection(mRecordExercise.getExercise());
         mSpinnerExercise1.setOnItemSelectedListener(mOnExerciseItemSelectedListener);
 
         mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
@@ -161,7 +161,7 @@ public class EditRecordExerciseActivity extends AppCompatActivity implements Vie
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference dailyExerciseRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.DailyExercisesPATH);
+                DatabaseReference dailyExerciseRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.DailyExercisesPATH).child(String.valueOf(mRecordExercise.getExerciseUid()));
 
                 Map<String, Object> data = new HashMap<String, Object>();
 
@@ -248,7 +248,7 @@ public class EditRecordExerciseActivity extends AppCompatActivity implements Vie
                             DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
                             DatabaseReference bodyWeightRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.DailyExercisesPATH).child(String.valueOf(mRecordExercise.getExerciseUid()));
                             bodyWeightRef.removeValue();
-                            Intent intent = new Intent(getApplicationContext(), RecordWeightListActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), RecordExerciseListActivity.class);
                             startActivity(intent);
                         }
                     }

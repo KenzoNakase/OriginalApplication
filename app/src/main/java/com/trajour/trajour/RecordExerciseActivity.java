@@ -131,7 +131,7 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         mSaveButton.setOnClickListener(this);
 
         mDeleteButton = (Button) findViewById(R.id.deleteButton);
-        mDeleteButton.setOnClickListener(this);
+        mDeleteButton.setVisibility(View.GONE);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
@@ -202,9 +202,6 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
 
         }
 
-        if (v.getId() == R.id.deleteButton) {
-            showAlertDialog();
-        }
     }
 
 
@@ -216,35 +213,6 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         } else {
             Snackbar.make(findViewById(android.R.id.content), "保存に失敗しました", Snackbar.LENGTH_LONG).show();
         }
-    }
-
-    private void showAlertDialog() {
-        // AlertDialog.Builderクラスを使ってAlertDialogの準備をする
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("実行確認");
-        alertDialogBuilder.setMessage("削除します。よろしいですか？");
-
-        // 肯定ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setPositiveButton("はい",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-        // 否定ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setNegativeButton("キャンセル",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-        // AlertDialogを作成して表示する
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
     }
 
 }
