@@ -122,11 +122,21 @@ public class EditRecordExerciseActivity extends AppCompatActivity implements Vie
         mExerciseDate1.setOnClickListener(mOnDateClickListener);
 
         mSpinnerBodyPart1 = (Spinner) findViewById(R.id.spinnerBodyPart1);
-        //mSpinnerBodyPart1.setSelection(mRecordExercise.getBodyPart());
+        for (int i = 0; i < mSpinnerBodyPart1.getCount(); i++) {
+            if (mSpinnerBodyPart1.getItemAtPosition(i).equals(mRecordExercise.getBodyPart())) {
+                mSpinnerBodyPart1.setSelection(i);
+                break;
+            }
+        }
         mSpinnerBodyPart1.setOnItemSelectedListener(mOnBodyPartItemSelectedListener);
 
         mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
-        //mSpinnerBodyPart1.setSelection(mRecordExercise.getExercise());
+        for (int i = 0; i < mSpinnerExercise1.getCount(); i++) {
+            if (mSpinnerExercise1.getItemAtPosition(i).equals(mRecordExercise.getExercise())) {
+                mSpinnerExercise1.setSelection(i);
+                break;
+            }
+        }
         mSpinnerExercise1.setOnItemSelectedListener(mOnExerciseItemSelectedListener);
 
         mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
