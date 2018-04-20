@@ -195,6 +195,8 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
 
                 dailyExerciseRef.push().setValue(data, this);
                 mProgress.show();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);

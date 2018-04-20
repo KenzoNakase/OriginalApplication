@@ -46,8 +46,8 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog mProgress;
     private EditText mEditMenuDate1;
     private EditText mEditMenuName1;
-    private Button mSaveButton;
-    private Button mDeleteButton;
+    private Button mNextButton;
+
 
     public static Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
@@ -83,11 +83,8 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
         mEditMenuName1 = (EditText) findViewById(R.id.editMenuName1);
 
 
-        mSaveButton = (Button) findViewById(R.id.saveButton);
-        mSaveButton.setOnClickListener(this);
-
-        mDeleteButton = (Button) findViewById(R.id.deleteButton);
-        mDeleteButton.setOnClickListener(this);
+        mNextButton = (Button) findViewById(R.id.nextButton);
+        mNextButton.setOnClickListener(this);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
@@ -96,7 +93,7 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        if (v == mSaveButton) {
+        if (v == mNextButton) {
             // キーボードが出てたら閉じる
             InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -133,15 +130,14 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
 
                 bodyWeightRef.push().setValue(data, this);
                 mProgress.show();
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
+                startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         }
 
-        if (v.getId() == R.id.deleteButton) {
-            showAlertDialog();
-        }
     }
 
     @Override
@@ -155,32 +151,4 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    private void showAlertDialog() {
-        // AlertDialog.Builderクラスを使ってAlertDialogの準備をする
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("実行確認");
-        alertDialogBuilder.setMessage("削除します。よろしいですか？");
-
-        // 肯定ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setPositiveButton("はい",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-        // 否定ボタンに表示される文字列、押したときのリスナーを設定する
-        alertDialogBuilder.setNegativeButton("キャンセル",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-        // AlertDialogを作成して表示する
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
 }

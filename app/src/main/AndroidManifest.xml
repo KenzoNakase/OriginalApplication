@@ -60,6 +60,7 @@
             android:name=".ExerciseMenuListActivity"
             android:label="トレーニングメニュー一覧"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".ExerciseMenu2Activity"></activity>
     </application>
 
 </manifest>
