@@ -131,6 +131,7 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
                 bodyWeightRef.push().setValue(data, this);
                 mProgress.show();
                 Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
+                intent.putExtra("name", name);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
