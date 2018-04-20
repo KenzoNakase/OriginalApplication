@@ -153,8 +153,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), ExerciseMenuActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_exerciseMenuList) {
-
-
+            Intent intent = new Intent(getApplicationContext(), ExerciseMenuListActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_recordDailyExercise) {
             Intent intent = new Intent(getApplicationContext(), RecordExerciseActivity.class);
             startActivity(intent);

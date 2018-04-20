@@ -9,8 +9,8 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.trajour.trajour.RecordExerciseListActivity"
-    tools:showIn="@layout/activity_record_exercise_list">
+    tools:context="com.trajour.trajour.ExerciseMenuListActivity"
+    tools:showIn="@layout/activity_exercise_menu_list">
 
     <ListView
         android:id="@+id/listView1"
