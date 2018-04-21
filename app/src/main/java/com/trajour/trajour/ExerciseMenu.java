@@ -4,15 +4,10 @@ import java.io.Serializable;
 
 
 public class ExerciseMenu implements Serializable {
-    private String mUid;
+
     private String mExerciseMenuUid;
     private String mExerciseMenuDate;
     private String mExerciseMenuName;
-
-
-    public String getUid() {
-        return mUid;
-    }
 
     public String getExerciseUid() {
         return mExerciseMenuUid;
@@ -27,8 +22,7 @@ public class ExerciseMenu implements Serializable {
     }
 
 
-    public ExerciseMenu(String uid, String exerciseMenuUid, String exerciseMenuDate, String exerciseMenuName) {
-        mUid = uid;
+    public ExerciseMenu(String exerciseMenuUid, String exerciseMenuDate, String exerciseMenuName) {
         mExerciseMenuUid = exerciseMenuUid;
         mExerciseMenuDate = exerciseMenuDate;
         mExerciseMenuName = exerciseMenuName;

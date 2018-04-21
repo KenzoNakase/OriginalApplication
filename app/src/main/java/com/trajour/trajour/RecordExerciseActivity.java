@@ -98,7 +98,6 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             mSpinnerExercise1 = (Spinner) parent;
-
         }
 
         @Override
@@ -195,7 +194,7 @@ public class RecordExerciseActivity extends AppCompatActivity implements View.On
 
                 dailyExerciseRef.push().setValue(data, this);
                 mProgress.show();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RecordExerciseListActivity.class);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

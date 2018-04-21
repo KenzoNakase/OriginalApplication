@@ -43,7 +43,7 @@ public class ExerciseMenuListActivity extends AppCompatActivity {
             String exerciseMenuDate = (String) map.get("date");
             String exerciseMenuName = (String) map.get("name");
 
-            ExerciseMenu exerciseMenu = new ExerciseMenu(uid, dataSnapshot.getKey(), exerciseMenuDate, exerciseMenuName);
+            ExerciseMenu exerciseMenu = new ExerciseMenu(dataSnapshot.getKey(), exerciseMenuDate, exerciseMenuName);
             mExerciseMenuArrayList.add(exerciseMenu);
             mAdapter.notifyDataSetChanged();
         }

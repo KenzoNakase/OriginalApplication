@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.DatePicker;
@@ -27,12 +28,15 @@ import android.widget.DatePicker;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Calendar;
@@ -47,6 +51,10 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
     private EditText mEditMenuDate1;
     private EditText mEditMenuName1;
     private Button mNextButton;
+    private String mExerciseMenuUid;
+
+    private ArrayList<ExerciseMenu> mExerciseMenuArrayList;
+    private ExerciseMenuListAdapter mAdapter;
 
 
     public static Calendar calendar = Calendar.getInstance();
@@ -71,6 +79,8 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
             datePickerDialog.show();
         }
     };
+
+
 
 
     @Override
@@ -103,7 +113,7 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference bodyWeightRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH);
+                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH);
 
                 Map<String, String> data = new HashMap<String, String>();
 
@@ -124,15 +134,39 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
                     return;
                 }
 
-
                 data.put("date", date);
                 data.put("name", name);
 
-                bodyWeightRef.push().setValue(data, this);
+                exerciseMenuRef.push().setValue(data, this);
                 mProgress.show();
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
-                intent.putExtra("name", name);
-                startActivity(intent);
+
+                exerciseMenuRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        HashMap map = (HashMap) dataSnapshot.getValue();
+
+                        String exerciseMenuUid = dataSnapshot.getKey();
+                        String name =  (String) map.get("name");
+
+                        Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
+                        intent.putExtra("exerciseMenuUid", exerciseMenuUid);
+                        intent.putExtra("name", name);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
+
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
@@ -140,6 +174,8 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
         }
 
     }
+
+
 
     @Override
     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
