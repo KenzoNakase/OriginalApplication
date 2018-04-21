@@ -43,16 +43,15 @@
         android:textSize="18sp"
         android:layout_alignParentStart="true"/>
 
-    <Spinner
-        android:id="@+id/spinnerExercise1"
+    <TextView
+        android:id="@+id/textExercise2"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="32dp"
+        android:text="AAA"
         android:layout_below="@+id/textExercise1"
-        android:layout_centerHorizontal="true"
-        android:entries="@array/exerciseList"
-        android:spinnerMode="dialog" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/textWeight1"
@@ -62,7 +61,7 @@
         android:layout_marginLeft="32dp"
         android:text="重量"
         android:textSize="18sp"
-        android:layout_below="@+id/spinnerExercise1"
+        android:layout_below="@+id/textExercise2"
         android:layout_alignParentStart="true"/>
 
     <EditText

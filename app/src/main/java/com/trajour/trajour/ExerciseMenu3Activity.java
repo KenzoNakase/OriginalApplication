@@ -33,22 +33,31 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
     private TextView mMenuName;
     private String mExerciseMenuUid;
     private ProgressDialog mProgress;
-    private Spinner  mSpinnerExercise1;
+    private TextView mTextExercise2;
+    private EditText mEditWeight1;
+    private EditText mEditRep1;
+    private EditText mEditSet1;
     private Button mNextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_exercise_menu2);
+        setContentView(R.layout.activity_exercise_menu3);
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
+        String exercise = intent.getStringExtra("exercise");
         mExerciseMenuUid = intent.getStringExtra("exerciseMenuUid");
 
         mMenuName = (TextView)findViewById(R.id.textMenuName3);
         mMenuName.setText(name);
 
-        mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
+        mTextExercise2 = (TextView)findViewById(R.id.textExercise2);
+        mTextExercise2.setText(exercise);
+
+        mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
+        mEditRep1 = (EditText) findViewById(R.id.editRep1);
+        mEditSet1 = (EditText) findViewById(R.id.editSet1);
 
         mNextButton = (Button) findViewById(R.id.nextButton);
         mNextButton.setOnClickListener(this);
@@ -69,23 +78,20 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenuUid).child(Const.ExerciseMenuExercisePATH);
+                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenuUid).child(Const.ExerciseMenuExercisePATH).child(mExerciseMenuUid);
 
                 Map<String, Object> data = new HashMap<String, Object>();
 
-                final String exercise = mSpinnerExercise1.getSelectedItem().toString();
+                String weight = mEditWeight1.getText().toString();
+                String rep = mEditRep1.getText().toString();
+                String set = mEditSet1.getText().toString();
 
-
-                if (exercise.length() == 0) {
-                    // 質問が入力されていない時はエラーを表示するだけ
-                    Snackbar.make(v, "トレーニング種目を入力して下さい", Snackbar.LENGTH_LONG).show();
-                    return;
-                }
-
-                data.put("exercise", exercise);
+                data.put("weight", weight);
+                data.put("rep", rep);
+                data.put("set", set);
 
                 exerciseMenuRef.push().setValue(data, this);
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 mProgress.show();
 

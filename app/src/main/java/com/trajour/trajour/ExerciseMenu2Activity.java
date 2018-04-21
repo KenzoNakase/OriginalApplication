@@ -31,6 +31,7 @@ import java.util.Map;
 public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private TextView mMenuName;
+    private String mName;
     private String mExerciseMenuUid;
     private ProgressDialog mProgress;
     private Spinner  mSpinnerExercise1;
@@ -42,11 +43,11 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_exercise_menu2);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        mName = intent.getStringExtra("name");
         mExerciseMenuUid = intent.getStringExtra("exerciseMenuUid");
 
         mMenuName = (TextView)findViewById(R.id.textMenuName3);
-        mMenuName.setText(name);
+        mMenuName.setText(mName);
 
         mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
 
@@ -74,6 +75,7 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
                 Map<String, Object> data = new HashMap<String, Object>();
 
                 final String exercise = mSpinnerExercise1.getSelectedItem().toString();
+                final String name = mMenuName.getText().toString();
 
 
                 if (exercise.length() == 0) {
@@ -83,12 +85,36 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
                 }
 
                 data.put("exercise", exercise);
-
                 exerciseMenuRef.push().setValue(data, this);
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
-                startActivity(intent);
                 mProgress.show();
 
+                exerciseMenuRef.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        HashMap map = (HashMap) dataSnapshot.getValue();
+
+                        String exerciseMenuUid = dataSnapshot.getKey();
+
+                        Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
+                        intent.putExtra("exerciseMenuUid", exerciseMenuUid);
+                        intent.putExtra("exercise", exercise);
+                        intent.putExtra("name", name);
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+                });
 
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
