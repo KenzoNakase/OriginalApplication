@@ -93,10 +93,9 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         HashMap map = (HashMap) dataSnapshot.getValue();
 
-                        String exerciseMenuUid = dataSnapshot.getKey();
-
                         Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
-                        intent.putExtra("exerciseMenuUid", exerciseMenuUid);
+                        intent.putExtra("exerciseUid", dataSnapshot.getKey());
+                        intent.putExtra("exerciseMenuUid", mExerciseMenuUid);
                         intent.putExtra("exercise", exercise);
                         intent.putExtra("name", name);
                         startActivity(intent);

@@ -60,7 +60,6 @@
         android:layout_height="wrap_content"
         android:text="次へ"
         android:id="@+id/nextButton"
-        android:layout_marginLeft="32dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true" />
 

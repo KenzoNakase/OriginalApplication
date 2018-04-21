@@ -32,6 +32,7 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
     private TextView mMenuName;
     private String mExerciseMenuUid;
+    private String mExerciseUid;
     private ProgressDialog mProgress;
     private TextView mTextExercise2;
     private EditText mEditWeight1;
@@ -47,6 +48,7 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String exercise = intent.getStringExtra("exercise");
+        mExerciseUid = intent.getStringExtra("exerciseUid");
         mExerciseMenuUid = intent.getStringExtra("exerciseMenuUid");
 
         mMenuName = (TextView)findViewById(R.id.textMenuName3);
@@ -78,7 +80,7 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenuUid).child(Const.ExerciseMenuExercisePATH).child(mExerciseMenuUid);
+                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenuUid).child(Const.ExerciseMenuExercisePATH).child(mExerciseUid);
 
                 Map<String, Object> data = new HashMap<String, Object>();
 
@@ -91,8 +93,6 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
                 data.put("set", set);
 
                 exerciseMenuRef.push().setValue(data, this);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
                 mProgress.show();
 
 
