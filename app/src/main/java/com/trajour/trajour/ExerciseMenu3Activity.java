@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
+public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private TextView mMenuName;
     private String mExerciseMenuUid;
