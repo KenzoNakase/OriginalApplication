@@ -32,10 +32,10 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
 
     private TextView mMenuName;
     private ExerciseMenu mExerciseMenu;
-    private String mExerciseMenuUid;
     private ProgressDialog mProgress;
     private Spinner  mSpinnerExercise1;
-    private Button mNextButton;
+    private Button mSaveButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,8 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
 
         mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
 
-        mNextButton = (Button) findViewById(R.id.nextButton);
-        mNextButton.setOnClickListener(this);
+        mSaveButton = (Button) findViewById(R.id.saveButton);
+        mSaveButton.setOnClickListener(this);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
@@ -60,7 +60,7 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        if (v == mNextButton) {
+        if (v == mSaveButton) {
             // キーボードが出てたら閉じる
             InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -69,12 +69,11 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenuUid).child(Const.ExerciseMenuExercisePATH);
+                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH);
 
                 Map<String, Object> data = new HashMap<String, Object>();
 
-                final String exercise = mSpinnerExercise1.getSelectedItem().toString();
-                final String name = mMenuName.getText().toString();
+                String exercise = mSpinnerExercise1.getSelectedItem().toString();
 
 
                 if (exercise.length() == 0) {
@@ -85,34 +84,11 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
 
                 data.put("exercise", exercise);
                 exerciseMenuRef.push().setValue(data, this);
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenuList2Activity.class);
+                intent.putExtra("exerciseMenu", mExerciseMenu);
+                intent.putExtra("exercise", exercise);
+                startActivity(intent);
                 mProgress.show();
-
-                exerciseMenuRef.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        HashMap map = (HashMap) dataSnapshot.getValue();
-
-                        Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
-                        intent.putExtra("exerciseUid", dataSnapshot.getKey());
-                        intent.putExtra("exerciseMenuUid", mExerciseMenuUid);
-                        intent.putExtra("exercise", exercise);
-                        intent.putExtra("name", name);
-                        startActivity(intent);
-
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
-                });
 
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

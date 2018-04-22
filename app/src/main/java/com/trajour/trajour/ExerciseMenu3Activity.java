@@ -31,7 +31,7 @@ import java.util.Map;
 public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private TextView mMenuName;
-    private String mExerciseMenuUid;
+    private ExerciseMenu mExerciseMenu;
     private String mExerciseUid;
     private ProgressDialog mProgress;
     private TextView mTextExercise2;
@@ -45,14 +45,14 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_menu3);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        String exercise = intent.getStringExtra("exercise");
-        mExerciseUid = intent.getStringExtra("exerciseUid");
-        mExerciseMenuUid = intent.getStringExtra("exerciseMenuUid");
+        Bundle extras = getIntent().getExtras();
+        mExerciseMenu = (ExerciseMenu) extras.get("exerciseMenu");
+        mExerciseUid = extras.getString("exerciseUid");
+
+        String exercise = extras.getString("exercise");
 
         mMenuName = (TextView)findViewById(R.id.textMenuName3);
-        mMenuName.setText(name);
+        mMenuName.setText(mExerciseMenu.getExerciseMenuName());
 
         mTextExercise2 = (TextView)findViewById(R.id.textExercise2);
         mTextExercise2.setText(exercise);
@@ -80,7 +80,7 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenuUid).child(Const.ExerciseMenuExercisePATH).child(mExerciseUid);
+                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH).child(mExerciseUid);
 
                 Map<String, Object> data = new HashMap<String, Object>();
 

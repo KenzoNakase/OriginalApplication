@@ -61,7 +61,8 @@
             android:label="トレーニングメニュー一覧"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".ExerciseMenu2Activity" />
-        <activity android:name=".ExerciseMenu3Activity"></activity>
+        <activity android:name=".ExerciseMenu3Activity" />
+        <activity android:name=".ExerciseMenuList2Activity"></activity>
     </application>
 
 </manifest>

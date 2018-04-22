@@ -9,7 +9,7 @@ public class ExerciseMenu implements Serializable {
     private String mExerciseMenuDate;
     private String mExerciseMenuName;
 
-    public String getExerciseUid() {
+    public String getExerciseMenuUid() {
         return mExerciseMenuUid;
     }
 

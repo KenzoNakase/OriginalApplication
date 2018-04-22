@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,25 +24,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExerciseMenuListActivity extends AppCompatActivity {
+public class ExerciseMenuList2Activity extends AppCompatActivity {
 
     private ListView mListView;
+    private Exercise mExercise;
+    private ArrayList<Exercise> mExerciseArrayList;
+    private ExerciseMenuList2Adapter mAdapter;
+    private DatabaseReference mExerciseListRef;
+
     private ExerciseMenu mExerciseMenu;
-    private ArrayList<ExerciseMenu> mExerciseMenuArrayList;
-    private ExerciseMenuListAdapter mAdapter;
-    private DatabaseReference mExerciseMenuListRef;
+    private String mExerciseUid;
+
 
     private ChildEventListener mEventListener = new ChildEventListener() {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             HashMap map = (HashMap) dataSnapshot.getValue();
 
-            String exerciseMenuUid = (String) map.get("exerciseMenuUid");
-            String exerciseMenuDate = (String) map.get("date");
-            String exerciseMenuName = (String) map.get("name");
+            String exerciseName = (String) map.get("exercise");
 
-            ExerciseMenu exerciseMenu = new ExerciseMenu(dataSnapshot.getKey(), exerciseMenuDate, exerciseMenuName);
-            mExerciseMenuArrayList.add(exerciseMenu);
+            Exercise exercise = new Exercise(exerciseName);
+            mExerciseArrayList.add(exercise);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -69,31 +72,33 @@ public class ExerciseMenuListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_exercise_menu_list);
+        setContentView(R.layout.content_exercise_menu_list2);
+
+        Bundle extras = getIntent().getExtras();
+        mExerciseMenu = (ExerciseMenu) extras.get("exerciseMenu");
+        mExerciseUid = extras.getString("exerciseUid");
 
         // ListViewの準備
         mListView = (ListView) findViewById(R.id.listView1);
-        mAdapter = new ExerciseMenuListAdapter(this);
-        mExerciseMenuArrayList = new ArrayList<ExerciseMenu>();
+        mAdapter = new ExerciseMenuList2Adapter(this);
+        mExerciseArrayList = new ArrayList<Exercise>();
         mAdapter.notifyDataSetChanged();
 
-        mExerciseMenuArrayList.clear();
-        mAdapter.setExerciseMenuArrayList(mExerciseMenuArrayList);
+        mExerciseArrayList.clear();
+        mAdapter.setExerciseArrayList(mExerciseArrayList);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
-                intent.putExtra("exerciseMenu", mExerciseMenuArrayList.get(position));
-                startActivity(intent);
+
             }
         });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-        mExerciseMenuListRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH);
-        mExerciseMenuListRef.addChildEventListener(mEventListener);
+        mExerciseListRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH);
+        mExerciseListRef.addChildEventListener(mEventListener);
 
     }
 
