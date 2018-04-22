@@ -41,9 +41,10 @@ public class ExerciseMenuList2Activity extends AppCompatActivity {
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             HashMap map = (HashMap) dataSnapshot.getValue();
 
+            String exerciseUid = (String) map.get("exerciseUid");
             String exerciseName = (String) map.get("exercise");
 
-            Exercise exercise = new Exercise(exerciseName);
+            Exercise exercise = new Exercise(dataSnapshot.getKey(), exerciseName);
             mExerciseArrayList.add(exercise);
             mAdapter.notifyDataSetChanged();
         }
@@ -91,7 +92,10 @@ public class ExerciseMenuList2Activity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
+                intent.putExtra("exercise", mExerciseArrayList.get(position));
+                intent.putExtra("exerciseMenu", mExerciseMenu);
+                startActivity(intent);
             }
         });
 

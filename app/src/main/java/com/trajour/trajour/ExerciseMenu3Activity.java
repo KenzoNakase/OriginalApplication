@@ -32,6 +32,7 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
     private TextView mMenuName;
     private ExerciseMenu mExerciseMenu;
+    private Exercise mExercise;
     private String mExerciseUid;
     private ProgressDialog mProgress;
     private TextView mTextExercise2;
@@ -47,15 +48,13 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
         Bundle extras = getIntent().getExtras();
         mExerciseMenu = (ExerciseMenu) extras.get("exerciseMenu");
-        mExerciseUid = extras.getString("exerciseUid");
-
-        String exercise = extras.getString("exercise");
+        mExercise = (Exercise) extras.get("exercise");
 
         mMenuName = (TextView)findViewById(R.id.textMenuName3);
         mMenuName.setText(mExerciseMenu.getExerciseMenuName());
 
         mTextExercise2 = (TextView)findViewById(R.id.textExercise2);
-        mTextExercise2.setText(exercise);
+        mTextExercise2.setText(mExercise.getExercise());
 
         mEditWeight1 = (EditText) findViewById(R.id.editWeight1);
         mEditRep1 = (EditText) findViewById(R.id.editRep1);
@@ -80,7 +79,7 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
 
             if (user != null) {
                 DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH).child(mExerciseUid);
+                DatabaseReference exerciseMenuRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH).child(mExercise.getExerciseUid());
 
                 Map<String, Object> data = new HashMap<String, Object>();
 
