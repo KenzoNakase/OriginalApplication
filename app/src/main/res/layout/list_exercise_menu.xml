@@ -5,13 +5,24 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
         android:text="ExerciseMenu"
         android:id="@+id/textExerciseMenu1"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Date"
+        android:id="@+id/textExerciseMenuDate1"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
 
 

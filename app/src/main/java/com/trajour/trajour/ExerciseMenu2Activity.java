@@ -31,7 +31,7 @@ import java.util.Map;
 public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnClickListener, DatabaseReference.CompletionListener {
 
     private TextView mMenuName;
-    private String mName;
+    private ExerciseMenu mExerciseMenu;
     private String mExerciseMenuUid;
     private ProgressDialog mProgress;
     private Spinner  mSpinnerExercise1;
@@ -42,12 +42,11 @@ public class ExerciseMenu2Activity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise_menu2);
 
-        Intent intent = getIntent();
-        mName = intent.getStringExtra("name");
-        mExerciseMenuUid = intent.getStringExtra("exerciseMenuUid");
+        Bundle extras = getIntent().getExtras();
+        mExerciseMenu = (ExerciseMenu) extras.get("exerciseMenu");
 
         mMenuName = (TextView)findViewById(R.id.textMenuName3);
-        mMenuName.setText(mName);
+        mMenuName.setText(mExerciseMenu.getExerciseMenuName());
 
         mSpinnerExercise1 = (Spinner) findViewById(R.id.spinnerExercise1);
 

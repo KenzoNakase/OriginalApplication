@@ -42,6 +42,9 @@ public class ExerciseMenuListAdapter extends BaseAdapter {
         TextView textExerciseMenu1 = (TextView) convertView.findViewById(R.id.textExerciseMenu1);
         textExerciseMenu1.setText(mExerciseMenuArrayList.get(position).getExerciseMenuName());
 
+        TextView textExerciseMenuDate1 = (TextView) convertView.findViewById(R.id.textExerciseMenuDate1);
+        textExerciseMenuDate1.setText(mExerciseMenuArrayList.get(position).getExerciseMenuDate());
+
         return convertView;
     }
 

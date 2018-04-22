@@ -50,7 +50,7 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
     private ProgressDialog mProgress;
     private EditText mEditMenuDate1;
     private EditText mEditMenuName1;
-    private Button mNextButton;
+    private Button mSaveButton;
     private String mExerciseMenuUid;
 
     private ArrayList<ExerciseMenu> mExerciseMenuArrayList;
@@ -93,8 +93,8 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
         mEditMenuName1 = (EditText) findViewById(R.id.editMenuName1);
 
 
-        mNextButton = (Button) findViewById(R.id.nextButton);
-        mNextButton.setOnClickListener(this);
+        mSaveButton = (Button) findViewById(R.id.saveButton);
+        mSaveButton.setOnClickListener(this);
 
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("投稿中...");
@@ -103,7 +103,7 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        if (v == mNextButton) {
+        if (v == mSaveButton) {
             // キーボードが出てたら閉じる
             InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -138,34 +138,10 @@ public class ExerciseMenuActivity extends AppCompatActivity implements View.OnCl
                 data.put("name", name);
 
                 exerciseMenuRef.push().setValue(data, this);
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenuListActivity.class);
+                startActivity(intent);
                 mProgress.show();
 
-                exerciseMenuRef.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        HashMap map = (HashMap) dataSnapshot.getValue();
-
-                        String exerciseMenuUid = dataSnapshot.getKey();
-                        String name =  (String) map.get("name");
-
-                        Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
-                        intent.putExtra("exerciseMenuUid", exerciseMenuUid);
-                        intent.putExtra("name", name);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
-                });
 
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
