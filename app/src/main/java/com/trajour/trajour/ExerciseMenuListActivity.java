@@ -84,7 +84,7 @@ public class ExerciseMenuListActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenuList2Activity.class);
                 intent.putExtra("exerciseMenu", mExerciseMenuArrayList.get(position));
                 startActivity(intent);
             }

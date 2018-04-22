@@ -1,15 +1,20 @@
 package com.trajour.trajour;
 
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,8 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-public class ExerciseMenuList2Activity extends AppCompatActivity {
+public class ExerciseMenuList2Activity extends AppCompatActivity  {
 
     private ListView mListView;
     private Exercise mExercise;
@@ -34,6 +40,22 @@ public class ExerciseMenuList2Activity extends AppCompatActivity {
 
     private ExerciseMenu mExerciseMenu;
     private String mExerciseUid;
+    private Button mAddExerciseButton;
+
+    private View.OnClickListener mOnAddExerciseClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (v == mAddExerciseButton) {
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
+                intent.putExtra("exerciseMenu", mExerciseMenu);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+
+        }
+    };
 
 
     private ChildEventListener mEventListener = new ChildEventListener() {
@@ -98,6 +120,9 @@ public class ExerciseMenuList2Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mAddExerciseButton = (Button) findViewById(R.id.addExerciseButton);
+        mAddExerciseButton.setOnClickListener(mOnAddExerciseClickListener);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
