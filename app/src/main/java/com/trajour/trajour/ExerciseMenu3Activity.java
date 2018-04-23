@@ -92,6 +92,11 @@ public class ExerciseMenu3Activity extends AppCompatActivity implements View.OnC
                 data.put("set", set);
 
                 exerciseMenuRef.push().setValue(data, this);
+
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenuList3Activity.class);
+                intent.putExtra("exerciseMenu", mExerciseMenu);
+                intent.putExtra("exercise", mExercise);
+                startActivity(intent);
                 mProgress.show();
 
 

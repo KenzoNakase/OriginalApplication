@@ -29,25 +29,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import android.util.Log;
 
-public class ExerciseMenuList2Activity extends AppCompatActivity  {
+public class ExerciseMenuList3Activity extends AppCompatActivity  {
 
     private ListView mListView;
     private Exercise mExercise;
-    private ArrayList<Exercise> mExerciseArrayList;
-    private ExerciseMenuList2Adapter mAdapter;
-    private DatabaseReference mExerciseListRef;
+    private ArrayList<WeightRepSet> mWeightRepSetArrayList;
+    private ExerciseMenuList3Adapter mAdapter;
+    private DatabaseReference mWeightRepSetRef;
 
     private ExerciseMenu mExerciseMenu;
     private String mExerciseUid;
-    private Button mAddExerciseButton;
+    private Button mAddWeightRepSetButton;
 
-    private View.OnClickListener mOnAddExerciseClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnAddWeightRepSetButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (v == mAddExerciseButton) {
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenu2Activity.class);
-                intent.putExtra("exerciseMenu", mExerciseMenu);
+            if (v == mAddWeightRepSetButton) {
+                Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
+                //intent.putExtra("exerciseMenu", mExerciseMenu);
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -62,12 +63,14 @@ public class ExerciseMenuList2Activity extends AppCompatActivity  {
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
             HashMap map = (HashMap) dataSnapshot.getValue();
+            Log.d("TechAcademy", String.valueOf(map));
 
-            String exerciseUid = (String) map.get("exerciseUid");
-            String exerciseName = (String) map.get("exercise");
+            String weight = (String) map.get("weight");
+            String rep = (String) map.get("rep");
+            String set = (String) map.get("set");
 
-            Exercise exercise = new Exercise(dataSnapshot.getKey(), exerciseName);
-            mExerciseArrayList.add(exercise);
+            WeightRepSet weightRepSet = new WeightRepSet(weight, rep, set);
+            mWeightRepSetArrayList.add(weightRepSet);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -92,42 +95,50 @@ public class ExerciseMenuList2Activity extends AppCompatActivity  {
         }
     };
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_exercise_menu_list2);
+        setContentView(R.layout.content_exercise_menu_list3);
+
+        //Bundle extras = getIntent().getExtras();
+        //mExerciseMenu = (ExerciseMenu) extras.get("exerciseMenu");
+        //mExerciseUid = extras.getString("exerciseUid");
 
         Bundle extras = getIntent().getExtras();
         mExerciseMenu = (ExerciseMenu) extras.get("exerciseMenu");
-        mExerciseUid = extras.getString("exerciseUid");
+        mExercise = (Exercise) extras.get("exercise");
 
         // ListViewの準備
         mListView = (ListView) findViewById(R.id.listView1);
-        mAdapter = new ExerciseMenuList2Adapter(this);
-        mExerciseArrayList = new ArrayList<Exercise>();
+        mAdapter = new ExerciseMenuList3Adapter(this);
+        mWeightRepSetArrayList = new ArrayList<WeightRepSet>();
         mAdapter.notifyDataSetChanged();
 
-        mExerciseArrayList.clear();
-        mAdapter.setExerciseArrayList(mExerciseArrayList);
+        mWeightRepSetArrayList.clear();
+        mAdapter.setWeightRepSetArrayList(mWeightRepSetArrayList);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), ExerciseMenuList3Activity.class);
-                intent.putExtra("exercise", mExerciseArrayList.get(position));
-                intent.putExtra("exerciseMenu", mExerciseMenu);
-                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), ExerciseMenu3Activity.class);
+                //intent.putExtra("exercise", mWeightRepSetArrayList.get(position));
+                //intent.putExtra("exerciseMenu", mExerciseMenu);
+                //startActivity(intent);
             }
         });
 
-        mAddExerciseButton = (Button) findViewById(R.id.addExerciseButton);
-        mAddExerciseButton.setOnClickListener(mOnAddExerciseClickListener);
+        mAddWeightRepSetButton = (Button) findViewById(R.id.addWeightRepSetButton);
+        mAddWeightRepSetButton.setOnClickListener(mOnAddWeightRepSetButtonClickListener);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference dataBaseReference = FirebaseDatabase.getInstance().getReference();
-        mExerciseListRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH);
-        mExerciseListRef.addChildEventListener(mEventListener);
+        mWeightRepSetRef = dataBaseReference.child(Const.UsersPATH).child(user.getUid()).child(Const.ExercisesMenusPATH).child(mExerciseMenu.getExerciseMenuUid()).child(Const.ExerciseMenuExercisePATH).child(mExercise.getExerciseUid());
+        mWeightRepSetRef.addChildEventListener(mEventListener);
+
+
 
     }
 

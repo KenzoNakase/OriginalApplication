@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="Weight"
+        android:id="@+id/textWeight10"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/textWeight10"
+        android:text="kg"
+        android:id="@+id/textWeight11"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@+id/textWeight11"
+        android:text="Rep"
+        android:id="@+id/textRep4"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/textRep4"
+        android:text="回"
+        android:id="@+id/textRep5"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@+id/textRep5"
+        android:text="Set"
+        android:id="@+id/textSet5"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/textSet5"
+        android:text="セット"
+        android:id="@+id/textSet6"
+        android:layout_alignParentTop="true" />
+
+
+</RelativeLayout>

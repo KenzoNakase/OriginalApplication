@@ -63,6 +63,7 @@
         <activity android:name=".ExerciseMenu2Activity" />
         <activity android:name=".ExerciseMenu3Activity" />
         <activity android:name=".ExerciseMenuList2Activity"></activity>
+        <activity android:name=".ExerciseMenuList3Activity"></activity>
     </application>
 
 </manifest>
